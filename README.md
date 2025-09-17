@@ -1,80 +1,99 @@
-This project is a Spam Detection System built using Python and scikit-learn. It utilizes basic Natural Language Processing (NLP) and a Multinomial Naive Bayes classifier to determine whether a given email message is Spam or Not Spam.
+📩 Spam Message Classifier
 
-Table of Contents
-Project Overview
+A machine learning project to classify SMS messages as Spam or Ham using different models such as Random Forest Classifier (RFC), Decision Tree Classifier (DTC), and Multinomial Naïve Bayes (MNB).
 
-Dataset
+🚀 Features
 
-Tech Stack
+Preprocesses raw text messages (lowercasing, removing special characters, stopwords removal, stemming).
 
-How It Works
+Converts text into numerical features using CountVectorizer.
 
-Model Performance
+Trains and evaluates 3 models:
 
-Running the Code
+🌲 Random Forest Classifier (RFC)
 
-Example Usage
+🌳 Decision Tree Classifier (DTC)
 
-Future Improvements
+📊 Multinomial Naïve Bayes (MNB)
 
-Contributing
+Provides accuracy, confusion matrix, and classification reports.
 
-License
+Saves trained models using Pickle for future predictions.
 
-Author
+Includes a function predictMessage() to classify any new SMS.
 
-Project Overview
-The main goal of this project is to classify emails as Spam or Not Spam based on their content using Machine Learning. This type of text classification is a classic NLP problem and has many real-world applications such as:
+📂 Dataset
 
-Email spam filtering
+The dataset used is spam.csv, which contains SMS labeled as ham (not spam) or spam.
 
-SMS classification
+Example:
 
-Content moderation
+ham, Go until jurong point, crazy.. Available only in bugis n great world la e buffet...
+spam, Free entry in 2 a wkly comp to win FA Cup final tkts 21st May 2005...
 
-Dataset
-The dataset used is a CSV file named emails.csv, which contains:
 
-Columns:
+📦 Requirements
 
-text: The content of the email
+Python 3.x
 
-spam: Label (1 = spam, 0 = not spam)
+numpy
 
-Make sure your dataset follows this structure. The model uses the text column as input and learns to predict the spam column.
+pandas
 
-Tech Stack
-Python 3
+matplotlib
 
-Pandas: Data manipulation and reading CSV
+seaborn
 
-scikit-learn:
+nltk
 
-CountVectorizer – for text feature extraction
+scikit-learn
 
-train_test_split – to split data
+(You can install them using pip install -r requirements.txt)
 
-MultinomialNB – for classification
+🔑 Usage
+1. Training the Model
 
-accuracy_score – to evaluate model performance
+Run the training script (spam_classifier.py or notebook). This will:
 
-How It Works
-Data Loading
-The CSV file is read using pandas.
+Preprocess the dataset
 
-Text Vectorization
-CountVectorizer converts the text into numerical vectors using a bag-of-words approach.
+Train all three models
 
-Model Training
-The dataset is split into training and testing sets (80% training, 20% testing). A MultinomialNB classifier is trained on the training data.
+Save them as .pkl files
 
-Model Evaluation
-The model is tested on unseen data and accuracy is calculated.
+2. Predicting a Message
 
-Prediction Function
-A custom function allows users to enter new email messages and receive real-time spam predictions.
+Use the predictMessage() function to test a new message:
 
-Model Performance
-After training the model, we evaluate its accuracy on the test set:
+usermessage = "Congratulations! You have won a free lottery ticket."
+result = predictMessage(usermessage)
+print(f"The message is: {result}")
 
-Accuracy: 0.98 
+
+Output:
+
+The message is: Spam
+
+📊 Model Performance
+Model	Accuracy
+Random Forest Classifier	~97%
+Decision Tree Classifier	~95%
+Multinomial Naïve Bayes	~98%
+📌 Project Structure
+📂 spam-classifier
+ ┣ 📜 spam_classifier.py        # Main training + prediction code
+ ┣ 📜 spam.csv                  # Dataset
+ ┣ 📜 RFC.pkl                   # Saved Random Forest Model
+ ┣ 📜 DTC.pkl                   # Saved Decision Tree Model
+ ┣ 📜 MNB.pkl                   # Saved Naïve Bayes Model
+ ┣ 📜 vectorizer.pkl            # Saved CountVectorizer
+ ┣ 📜 requirements.txt          # Dependencies
+ ┗ 📜 README.md                 # Documentation
+
+✨ Future Improvements
+
+Add support for deep learning models (LSTMs, Transformers).
+
+Deploy as a web app using Flask/Django.
+
+Create a Streamlit app for easy testing.
